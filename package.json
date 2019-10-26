@@ -1,0 +1,36 @@
+{
+  "name": "codeceptjs-resources-check",
+  "version": "0.0.1",
+  "description": "Load with puppeteer a url and listen the request during while the page is loading.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luarmr/codeceptjs-resources-check.git"
+  },
+  "keywords": [
+    "resources",
+    "testing",
+    "acceptance",
+    "resources",
+    "codeceptjs"
+  ],
+  "author": "Raul Martin <luarmr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luarmr/codeceptjs-resources-check/issues"
+  },
+  "homepage": "https://github.com/luarmr/codeceptjs-resources-check#readme",
+  "peerDependencies": {
+    "codeceptjs": "^2.0.8",
+    "puppeteer": "^1.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3"
+  }
+}

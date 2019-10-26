@@ -1,0 +1,11 @@
+{
+  "extends": "airbnb-base",
+  "globals": {
+    "Helper": false,
+    "codeceptjs": false
+  },
+  "rules": {
+    "no-underscore-dangle": "off",
+    "max-len": ["error", 150]
+  }
+}
