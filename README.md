@@ -2,7 +2,7 @@
 Codeceptjs helper. Load a URL with Puppeteer and listen to the requests while the page is loading.
 
 
-##Usage
+## Usage
 Run a browser with puppeteer and spy the resources loaded in a specific url.
 You can ask questions about these resources later on.
 
@@ -37,7 +37,7 @@ Check that the number of the resources that match with a specific `pattern` is `
 Check that the number of the resources that  have a specific `contentType` is `expectedNumber`.
   
   
-##Config:
+## Config:
 You can add these lines into your `codecept.conf.js`
 ```
   helpers: {
@@ -51,7 +51,7 @@ You can add these lines into your `codecept.conf.js`
 `threshold` by default is 0. 
 
 
-##Example of usage in a Scenario:
+## Example of usage in a Scenario:
 
 ```
 Scenario('test something', async (I) => {
@@ -59,7 +59,7 @@ Scenario('test something', async (I) => {
     // You have lunch the brower, maybe in your before step 
     const browser = await puppeteer.launch();
 
-    await I.spyTheResourcesLoadedIn('https://stackoverflow.com/');
+    I.spyTheResourcesLoadedIn('https://stackoverflow.com/');
 
     I.checkTheNumberOfResources(49);
 
