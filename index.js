@@ -66,12 +66,20 @@ class MyHelper extends Helper {
     assertAccumulatedLength(this.resources, expectedSize, {}, this.config.threshold);
   }
 
+  async checkTheNumberOfResource(pattern, expectedNumber) {
+    assertResourcesExist(this.resources);
+
+    const resourcesMatch = this.resources.filter(resource => pattern.test(resource.url));
+
+    assertResourcesNumber(resourcesMatch, expectedNumber, { pattern });
+  }
+
   async checkTheNumberOfResourceType(contentType, expectedNumber) {
     assertResourcesExist(this.resources);
 
     const resourcesMatch = this.resources.filter(resource => resource.contentType === contentType);
 
-    assertResourcesNumber(resourcesMatch, expectedNumber);
+    assertResourcesNumber(resourcesMatch, expectedNumber, { contentType });
   }
 
   async checkTheNumberOfResources(expectedNumber) {
