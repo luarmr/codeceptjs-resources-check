@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luarmr/codeceptjs-resources-check.git"
+    "url": "https://github.com/luarmr/codeceptjs-resources-check.git"
   },
   "keywords": [
     "resources",
@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/luarmr/codeceptjs-resources-check#readme",
   "peerDependencies": {
-    "codeceptjs": "^2.0.8",
     "puppeteer": "^1.14.0"
   },
   "devDependencies": {
