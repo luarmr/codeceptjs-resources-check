@@ -1,3 +1,4 @@
+[![npm install codeceptjs-resources-check](https://nodei.co/npm/codeceptjs-resources-check.png)](https://nodei.co/npm/codeceptjs-resources-check/)
 # codeceptjs-resources-check
 Codeceptjs helper. Load a URL with Puppeteer and listen to the requests while the page is loading.
 
@@ -13,20 +14,20 @@ Close the tab.
 ###  I.checkTheNumberOfResources(number)
 Check that the page loads the exact `number` of resources.
 
-###  I.checkTheResource(pattern, expectedSize) 
+###  I.checkTheResourceSize(pattern, expectedSize) 
 Check that the page only calls for one resource that matches with the `pattern` and has `expectedSize` while taking in consideration 
 a `threshold` that you can set up in the helper configuration. 
 
  
-###  I.checkTheResources(pattern, expectedSize) 
+###  I.checkTheResourcesSize(pattern, expectedSize) 
 Check that the sum of all sizes of the resources that match with the `pattern` and  has `expectedSize`  while taking in consideration 
 a `threshold` that you can set up in the helper configuration. 
  
-###  I.checkTheResourceType(contentType, expectedSize) 
+###  I.checkTheResourceTypeSize(contentType, expectedSize) 
 Check that the sum of all sizes  of the resources have a specific `contentType` and  has `expectedSize`  while taking in consideration 
 a `threshold` that you can set up in the helper configuration. 
  
-###  I.checkAllResources(expectedSize) 
+###  I.checkAllResourcesSize(expectedSize) 
 Check that the sum of all sizes of the resources has `expectedSize`  while taking in consideration 
 a `threshold` that you can set up in the helper configuration. 
   
@@ -42,7 +43,7 @@ You can add these lines into your `codecept.conf.js`
 ```
   helpers: {
     CodeceptjsResourcesCheck: {
-      require: './helpers/codeceptjs-resources-check/index.js',
+      require: 'codeceptjs-resources-check',
       threshold: 0.2
     }
   },
@@ -63,13 +64,13 @@ Scenario('test something', async (I) => {
 
     I.checkTheNumberOfResources(49);
 
-    // I.checkTheResource(/vendor-[A-Za-z0-9]{20}\.js/, 248524);
-    I.checkTheResource(/full-anon/, 67707);
+    // I.checkTheResourceSize(/vendor-[A-Za-z0-9]{20}\.js/, 248524);
+    I.checkTheResourceSize(/full-anon/, 67707);
 
-    I.checkTheResources(/\.js$/, 67707);
+    I.checkTheResourcesSize(/\.js$/, 67707);
 
-    I.checkTheResourceType('text/css', 104525);
-    I.checkAllResources(387616);
+    I.checkTheResourceTypeSize('text/css', 104525);
+    I.checkAllResourcesSize(387616);
 
     I.checkTheNumberOfResourceType('text/javascript', 1);
 
