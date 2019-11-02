@@ -36,7 +36,7 @@ class MyHelper extends Helper {
     assertResourcesExist(this.resources);
   }
 
-  async checkTheResource(pattern, expectedSize) {
+  async checkTheResourceSize(pattern, expectedSize) {
     assertResourcesExist(this.resources);
 
     const resourcesMatch = this.resources.filter(resource => pattern.test(resource.url));
@@ -45,7 +45,7 @@ class MyHelper extends Helper {
     assertAccumulatedLength(resourcesMatch, expectedSize, resourcesMatch[0], this.config.threshold);
   }
 
-  async checkTheResources(pattern, expectedSize) {
+  async checkTheResourcesSize(pattern, expectedSize) {
     assertResourcesExist(this.resources);
 
     const resourcesMatch = this.resources.filter(resource => pattern.test(resource.url));
@@ -53,7 +53,7 @@ class MyHelper extends Helper {
     assertAccumulatedLength(resourcesMatch, expectedSize, { pattern }, this.config.threshold);
   }
 
-  async checkTheResourceType(contentType, expectedSize) {
+  async checkTheResourceTypeSize(contentType, expectedSize) {
     assertResourcesExist(this.resources);
 
     const resourcesMatch = this.resources.filter(resource => resource.contentType === contentType);
@@ -61,7 +61,7 @@ class MyHelper extends Helper {
     assertAccumulatedLength(resourcesMatch, expectedSize, { 'content type': contentType }, this.config.threshold);
   }
 
-  async checkAllResources(expectedSize) {
+  async checkAllResourcesSize(expectedSize) {
     assertResourcesExist(this.resources);
     assertAccumulatedLength(this.resources, expectedSize, {}, this.config.threshold);
   }
