@@ -9,6 +9,10 @@ const {
 } = require('./asserts');
 
 class MyHelper extends Helper {
+  _after() {
+    delete this.resources;
+  }
+
   async spyTheResourcesLoadedIn(url) {
     const { browser } = await this.helpers.Puppeteer;
     const page = await browser.newPage();
