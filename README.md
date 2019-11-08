@@ -62,17 +62,17 @@ Scenario('test something', async (I) => {
 
     I.spyTheResourcesLoadedIn('https://stackoverflow.com/');
 
-	I.checkTheNumberOfResources(50);
+    I.checkTheNumberOfResources(49);
 
-	// I.checkTheResourceSize(/vendor-[A-Za-z0-9]{20}\.js/, 248524);
-    I.checkTheResourceSize(/full-anon/, 224550);
+    // I.checkTheResourceSize(/vendor-[A-Za-z0-9]{20}\.js/, 248524);
+    I.checkTheResourceSize(/full-anon/, 67707);
 
-    I.checkTheResourcesSize(/\.js$/, 155754);
+    I.checkTheResourcesSize(/\.js$/, 67707);
 
-	I.checkTheResourceTypeSize('text/css', 689743);
-	I.checkAllResourcesSize(1472934);
+    I.checkTheResourceTypeSize('text/css', 104525);
+    I.checkAllResourcesSize(387616);
 
-	I.checkTheNumberOfResourceType('text/javascript', 1);
+    I.checkTheNumberOfResourceType('text/javascript', 1);
 
     // Remember to close your browser, maybe in your after step 
     await browser.close();

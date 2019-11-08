@@ -19,19 +19,21 @@ class MyHelper extends Helper {
     this.resources = [];
 
     await page.setCacheEnabled(false);
-    page.on('response', async (interceptedRequest) => {
-      const headers = interceptedRequest._headers;
-      let buffer;
-      try {
-        buffer = await interceptedRequest.buffer();
-      } catch (e) {
-        this.debug(`\n\nExcluding: ${interceptedRequest.url()}\nReason: ${e.message}\n\n`);
-        return;
-      }
+
+    const devToolsResponses = new Map();
+    const devTools = await page.target().createCDPSession();
+    await devTools.send('Network.enable');
+
+    devTools.on('Network.responseReceived', (event) => {
+      devToolsResponses.set(event.requestId, event.response);
+    });
+
+    devTools.on('Network.loadingFinished', (event) => {
+      const response = devToolsResponses.get(event.requestId);
       const resource = {
-        url: interceptedRequest.url(),
-        contentLength: buffer.length || 0,
-        contentType: headers['content-type'],
+        url: response.url,
+        contentLength: event.encodedDataLength || 0,
+        contentType: response.headers['content-type'],
       };
       this.debug(`${resource.contentType}\t${resource.contentLength}\t${resource.url}`);
       this.resources.push(resource);
