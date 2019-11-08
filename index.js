@@ -16,14 +16,21 @@ class MyHelper extends Helper {
   async spyTheResourcesLoadedIn(url) {
     const { browser } = await this.helpers.Puppeteer;
     const page = await browser.newPage();
-
     this.resources = [];
 
-    page.on('response', (interceptedRequest) => {
+    await page.setCacheEnabled(false);
+    page.on('response', async (interceptedRequest) => {
       const headers = interceptedRequest._headers;
+      let buffer;
+      try {
+        buffer = await interceptedRequest.buffer();
+      } catch (e) {
+        this.debug(`\n\nExcluding: ${interceptedRequest.url()}\nReason: ${e.message}\n\n`);
+        return;
+      }
       const resource = {
         url: interceptedRequest.url(),
-        contentLength: headers['content-length'] || 0,
+        contentLength: buffer.length || 0,
         contentType: headers['content-type'],
       };
       this.debug(`${resource.contentType}\t${resource.contentLength}\t${resource.url}`);
