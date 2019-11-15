@@ -11,6 +11,9 @@ You can ask questions about these resources later on.
 Open a new tab in the browser, listen to the resources the page asks for until it is fully loaded.
 Close the tab.
 
+### startSpyTheResources
+Start to listen the resources in the last tab open.
+
 ###  I.checkTheNumberOfResources(number)
 Check that the page loads the exact `number` of resources.
 
@@ -78,5 +81,30 @@ Scenario('test something', async (I) => {
     await browser.close();
 });
 ```
+
+## Another example
+```
+Scenario('test something 2', async (I) => {
+    I.openNewTab();
+    I.emulateIPhone();
+
+    I.startSpyTheResources();
+
+    I.amOnPage('https://stackoverflow.com/')
+
+    I.checkTheNumberOfResources(51);
+
+	// I.checkTheResourceSize(/vendor-[A-Za-z0-9]{20}\.js/, 248524);
+    I.checkTheResourceSize(/full-anon/, 67707);
+
+    I.checkTheResourcesSize(/\.js$/, 67707);
+
+	I.checkTheResourceTypeSize('text/css', 104525);
+	I.checkAllResourcesSize(387616);
+
+	I.checkTheNumberOfResourceType('text/javascript', 1);
+});
+```
+
 
 

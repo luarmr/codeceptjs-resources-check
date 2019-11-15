@@ -13,11 +13,8 @@ class MyHelper extends Helper {
     delete this.resources;
   }
 
-  async spyTheResourcesLoadedIn(url) {
-    const { browser } = await this.helpers.Puppeteer;
-    const page = await browser.newPage();
+  async _startSpyingThePage(page) {
     this.resources = [];
-
     await page.setCacheEnabled(false);
 
     const devToolsResponses = new Map();
@@ -38,10 +35,24 @@ class MyHelper extends Helper {
       this.debug(`${resource.contentType}\t${resource.contentLength}\t${resource.url}`);
       this.resources.push(resource);
     });
+  }
+
+  async startSpyTheResources() {
+    const { page } = this.helpers.Puppeteer;
+    this._startSpyingThePage(page);
+    this.debug('Start capturing resources');
+  }
+
+  async spyTheResourcesLoadedIn(url) {
+    const { browser } = await this.helpers.Puppeteer;
+    const page = await browser.newPage();
+
+    this._startSpyingThePage(page);
 
     this.debug('Resources Captured');
     await page.goto(url, { waitUntil: ['networkidle0'] });
     this.debug('End Resources Captured');
+
     await page.close();
   }
 
